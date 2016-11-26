@@ -1,5 +1,5 @@
 {
-  "name": "DatPayment",
+  "name": "datpayment",
   "version": "1.0.0",
   "description": "DatPayment is a Javascript library helping you managin an awesome payment form",
   "main": "Gulpfile.js",
