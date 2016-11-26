@@ -1,9 +1,12 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var bower = require('gulp-bower');
-var babel = require('gulp-babel');
-var sass = require('gulp-sass');
-var merge = require('merge-stream');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const bower = require('gulp-bower');
+const babel = require('gulp-babel');
+const sass = require('gulp-sass');
+const merge = require('merge-stream');
+const autoprefixer = require('gulp-autoprefixer');
+
+var autoprefixer_versions = ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
 
 var config = {
     jsPath: './src/js',
@@ -25,6 +28,7 @@ gulp.task('css', function() {
                 config.sassPath
             ]
         }).on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixer_versions))
         .pipe(gulp.dest('./dist/css'));
 });
 
