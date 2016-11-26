@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var bower = require('gulp-bower');
 var babel = require('gulp-babel');
+var sass = require('gulp-sass');
 var merge = require('merge-stream');
 
 var config = {
@@ -14,6 +15,17 @@ var config = {
 gulp.task('bower', function() {
     return bower()
         .pipe(gulp.dest(config.bowerDir))
+});
+
+gulp.task('css', function() {
+    return gulp.src(config.sassPath + '/DatPayment.scss')
+        .pipe(sass({
+            style: 'compressed',
+            includePaths: [
+                config.sassPath
+            ]
+        }).on('error', sass.logError))
+        .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('js', function () {
@@ -34,4 +46,5 @@ gulp.task('js', function () {
 
 gulp.task('default',function() {
     gulp.watch([config.jsPath+'/*.js'],['js']);
+    gulp.watch([config.sassPath+'/*.scss'],['css']);
 });

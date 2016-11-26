@@ -1,0 +1,19 @@
+* {
+    padding:0;
+    margin:0;
+}
+
+body {
+    background:#fafafa;
+
+    padding-top:50px;
+}
+
+.datpayment-form {
+    width:500px;
+}
+
+pre {
+    width:500px;
+    margin:auto;
+}
