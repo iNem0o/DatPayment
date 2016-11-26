@@ -2,9 +2,11 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var bower = require('gulp-bower');
 var babel = require('gulp-babel');
+var merge = require('merge-stream');
 
 var config = {
     jsPath: './src/js',
+    sassPath: './src/sass',
     bowerDir: './bower_components',
     cardPath: './bower_components/card'
 };
@@ -15,18 +17,19 @@ gulp.task('bower', function() {
 });
 
 gulp.task('js', function () {
+    return merge(
         gulp.src([
             config.cardPath + '/dist/card.js',
-            config.jsPath+"/DatPayment.js"
+        ])
+        ,
+        gulp.src([
+            config.jsPath+"/DatPayment.js",
         ])
         .pipe(babel({
             presets: ['es2015']
         }))
-        .pipe(concat("DatPayment.js"))
-        .on('error', function (err) {
-            console.log(err.message);
-        })
-        .pipe(gulp.dest('./dist/js'));
+    ).pipe(concat("DatPayment.js"))
+     .pipe(gulp.dest('./dist/js'))
 });
 
 gulp.task('default',function() {
