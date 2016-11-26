@@ -1,0 +1,27 @@
+{
+  "name": "DatPayment",
+  "version": "1.0.0",
+  "description": "DatPayment is a Javascript library helping you managin an awesome payment form",
+  "main": "Gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-bower": "^0.0.13",
+    "gulp-concat": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iNem0o/DatPayment.git"
+  },
+  "author": "",
+  "license": "MIT"
+}

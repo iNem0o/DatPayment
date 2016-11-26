@@ -1,0 +1,21 @@
+{
+  "name": "DatPayment",
+  "authors": [
+    "inem0o <cuneaz.leo@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "card": "^2.0.4"
+  }
+}
