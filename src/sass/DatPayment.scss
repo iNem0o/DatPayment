@@ -25,6 +25,37 @@
 
   .dpf-input-container {
     text-align: center;
+    position:relative;
+
+    &.with-icon {
+      .dpf-input {
+        padding-left:40px;
+      }
+    }
+
+    &.dpf-row-valid {
+      .fa {
+        color:$datpayment-form-valid-color;
+      }
+
+      .dpf-input {
+        opacity: 1;
+        border: 1px solid rgba($datpayment-form-valid-color,0.35);
+
+        box-shadow: 0px 1px 0px rgba($datpayment-form-valid-color,.25),inset 0px 3px 6px rgba($datpayment-form-valid-color,.25);
+      }
+    }
+    &.dpf-row-invalid {
+      color:$datpayment-form-invalid-color;
+
+      .dpf-input {
+        opacity: 1;
+        color:$datpayment-form-invalid-color;
+        border: 1px solid rgba($datpayment-form-invalid-color,0.35);
+
+        box-shadow: 0px 1px 0px rgba($datpayment-form-invalid-color,.25),inset 0px 3px 6px rgba($datpayment-form-invalid-color,.25);
+      }
+    }
   }
   .dpf-input-column {
     width:50%;
@@ -49,7 +80,11 @@
 }
 
 .dpf-input-icon {
-
+  width:20%;
+  position:absolute;
+  font-size:1.5em;
+  top:8px;
+  left:20px;
 }
 
 .dpf-input {
@@ -61,11 +96,12 @@
   padding: $datpayment-dpf-input-padding;
   border-radius: 5px;
   border: $datpayment-dpf-input-border-color;
+  opacity: .8;
 
   &:hover,
   &:focus {
     transition: all 0.2s;
-    opacity: .7;
+    opacity: 1;
     box-shadow: 0px 1px 0px rgba(255,255,255,.25),inset 0px 3px 6px rgba(0,0,0,.25);
   }
 }

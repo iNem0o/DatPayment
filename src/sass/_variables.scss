@@ -11,6 +11,10 @@ $datpayment-dpf-input-border-color: 1px solid rgba(0,0,0,0.5) !default;
 $datpayment-dpf-input-padding: 10px 8px 10px 8px !default;
 $datpayment-dpf-input-margin: 20px auto !default;
 
+// inputs state
+$datpayment-form-invalid-color: #ff2525 !default;
+$datpayment-form-valid-color: #188a1e !default;
+
 // submit button
 $datpayment-submit-primary-color: #08c !default;
 $datpayment-submit-border-radius: 4px !default;

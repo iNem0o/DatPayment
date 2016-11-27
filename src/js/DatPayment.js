@@ -17,6 +17,11 @@ class DatPayment {
         this.card = null;
 
 
+        this.validation_class = {
+            'success': 'dpf-row-valid',
+            'error': 'dpf-row-invalid'
+        };
+
         this.initForm();
         this.initCard();
         this.initEvents();
@@ -57,6 +62,52 @@ class DatPayment {
                 });
             }
         });
+
+
+        this.form.addEventListener('payment_form:field_validation_reset',(e) => {
+            var input_row = this.findRowFromInput(e.detail);
+            if(input_row.classList.contains(this.validation_class.success)) {
+                input_row.classList.remove(this.validation_class.success)
+            }
+
+            if(input_row.classList.contains(this.validation_class.error)) {
+                input_row.classList.remove(this.validation_class.error)
+            }
+        });
+
+        this.form.addEventListener('payment_form:field_validation_failed',(e) => {
+            var input_row = this.findRowFromInput(e.detail);
+            if(input_row.classList.contains(this.validation_class.success)) {
+                input_row.classList.remove(this.validation_class.success)
+            }
+
+            if(!input_row.classList.contains(this.validation_class.error)) {
+                input_row.classList.add(this.validation_class.error)
+            }
+        });
+
+        this.form.addEventListener('payment_form:field_validation_success',(e) => {
+            var input_row = this.findRowFromInput(e.detail);
+
+            if(input_row.classList.contains(this.validation_class.error)) {
+                input_row.classList.remove(this.validation_class.error)
+            }
+
+            if(!input_row.classList.contains(this.validation_class.success)) {
+                input_row.classList.add(this.validation_class.success)
+            }
+        });
+    }
+
+    findRowFromInput(input) {
+        var nb_try = 0;
+        do {
+            nb_try++;
+            var parent = input.parentNode;
+
+        } while(!parent.classList.contains('dpf-input-container') || nb_try<=4);
+
+        return parent;
     }
 
     getValue(field_name) {
