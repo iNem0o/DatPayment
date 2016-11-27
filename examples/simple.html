@@ -3,12 +3,16 @@
     <head>
         <title>DatPayment example</title>
         <meta charset='utf-8'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../dist/css/DatPayment.css">
         <link rel="stylesheet" type="text/css" href="./example.css">
     </head>
     <body>
         <form action="/your-charge-code" method="POST" id="payment-form" class="datpayment-form">
-            <div class="dpf-title">Paiement par carte bancaire</div>
+            <div class="dpf-title">
+                Paiement par carte bancaire
+                <div class="accepted-cards-logo"></div>
+            </div>
             <div class="dpf-card-placeholder"></div>
             <div class="dpf-input-container">
                 <div class="dpf-input-row">
@@ -21,23 +25,24 @@
                 </div>
 
                 <div class="dpf-input-row">
-                    <input type="hidden" size="2" data-type="exp_month" placeholder="MM">
-                    <input type="hidden" size="2" data-type="exp_year" placeholder="YY">
+                    <div class="dpf-input-column">
+                        <input type="hidden" size="2" data-type="exp_month" placeholder="MM">
+                        <input type="hidden" size="2" data-type="exp_year" placeholder="YY">
 
-                    <label class="dpf-input-label">Date d'expiration</label>
-                    <div class="dpf-input-container">
-                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        <label class="dpf-input-label">Date d'expiration</label>
+                        <div class="dpf-input-container">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
 
-                        <input type="text" class="dpf-input" data-type="expiry">
+                            <input type="text" class="dpf-input" data-type="expiry">
+                        </div>
                     </div>
-                </div>
+                    <div class="dpf-input-column">
+                        <label class="dpf-input-label">Code de vérification</label>
+                        <div class="dpf-input-container">
+                            <span class="input-group-addon"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
 
-                <div class="dpf-input-row">
-                    <label class="dpf-input-label">Code de vérification</label>
-                    <div class="dpf-input-container">
-                        <span class="input-group-addon"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
-
-                        <input type="text" class="dpf-input" size="4" data-type="cvc">
+                            <input type="text" class="dpf-input" size="4" data-type="cvc">
+                        </div>
                     </div>
                 </div>
 
