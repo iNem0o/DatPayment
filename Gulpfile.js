@@ -6,9 +6,9 @@ const sass = require('gulp-sass');
 const merge = require('merge-stream');
 const autoprefixer = require('gulp-autoprefixer');
 
-var autoprefixer_versions = ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
+const autoprefixer_versions = ['last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
 
-var config = {
+const config = {
     jsPath: './src/js',
     sassPath: './src/sass',
     bowerDir: './bower_components',
