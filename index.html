@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="stylesheets/DatPayment.css">
 
@@ -36,43 +38,41 @@
 
         <section id="main_content">
           <form action="/" method="POST" id="payment-form" class="datpayment-form">
-            <div class="dpf-title">Paiement par carte bancaire</div>
+            <div class="dpf-title">
+              Paiement par carte bancaire
+              <div class="accepted-cards-logo"></div>
+            </div>
             <div class="dpf-card-placeholder"></div>
             <div class="dpf-input-container">
               <div class="dpf-input-row">
                 <label class="dpf-input-label">Numéro de carte</label>
-                <div class="dpf-input-container">
+                <div class="dpf-input-container with-icon">
                   <span class="dpf-input-icon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
-
                   <input type="text" class="dpf-input" size="20" data-type="number">
                 </div>
               </div>
 
               <div class="dpf-input-row">
-                <input type="hidden" size="2" data-type="exp_month" placeholder="MM">
-                <input type="hidden" size="2" data-type="exp_year" placeholder="YY">
+                <div class="dpf-input-column">
+                  <input type="hidden" size="2" data-type="exp_month" placeholder="MM">
+                  <input type="hidden" size="2" data-type="exp_year" placeholder="YY">
 
-                <label class="dpf-input-label">Date d'expiration</label>
-                <div class="dpf-input-container">
-                  <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-
-                  <input type="text" class="dpf-input" data-type="expiry">
+                  <label class="dpf-input-label">Date d'expiration</label>
+                  <div class="dpf-input-container">
+                    <input type="text" class="dpf-input" data-type="expiry">
+                  </div>
                 </div>
-              </div>
-
-              <div class="dpf-input-row">
-                <label class="dpf-input-label">Code de vérification</label>
-                <div class="dpf-input-container">
-                  <span class="input-group-addon"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
-
-                  <input type="text" class="dpf-input" size="4" data-type="cvc">
+                <div class="dpf-input-column">
+                  <label class="dpf-input-label">Code de vérification</label>
+                  <div class="dpf-input-container">
+                    <input type="text" class="dpf-input" size="4" data-type="cvc">
+                  </div>
                 </div>
               </div>
 
               <div class="dpf-input-row">
                 <label class="dpf-input-label">Nom du porteur</label>
                 <div class="dpf-input-container">
-                  <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                   <input type="text" size="4" class="dpf-input" data-type="name">
                 </div>
               </div>
@@ -88,12 +88,17 @@
             </div>
           </form>
 
-          <pre id="pre">
-              4242424242424242	Visa
-              5555555555554444	Mastercard
-              378282246310005   American Express
-              6011111111111117	Discover
-          </pre>
+          <br><br><br><br>
+        <pre>
+            NUMBER              BRAND
+            _____________________________________
+
+            4242424242424242	Visa
+            5555555555554444	Mastercard
+            378282246310005     American Express
+            6011111111111117	Discover
+        </pre>
+        <pre id="demo-log"></pre>
 
         </section>
 
@@ -103,7 +108,7 @@
 
 
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-        <script type="text/javascript" src="javascripts/DatPayment.js"></script>
+        <script type="text/javascript" src="/javascripts/DatPayment.js"></script>
 
         <script type="text/javascript">
           var payment_form = new DatPayment({
@@ -141,23 +146,25 @@
             }
           });
 
+          var demo_log_div = document.getElementById("demo-log");
+
           payment_form.form.addEventListener('payment_form:submit',function(e){
             var form_data = e.detail;
-
-            document.getElementById('pre').innerHTML = JSON.stringify(form_data);
-          });
-
-
-          payment_form.form.addEventListener('payment_form:field_validation_reset',function(e){
-            var input = e.detail;
+            payment_form.unlockForm();
+            demo_log_div.innerHTML += "<br>"+JSON.stringify(form_data);
           });
 
           payment_form.form.addEventListener('payment_form:field_validation_success',function(e){
             var input = e.detail;
+
+            demo_log_div.innerHTML += "<br>field_validation_success:"+input.getAttribute("data-type");
+
           });
 
           payment_form.form.addEventListener('payment_form:field_validation_failed',function(e){
             var input = e.detail;
+
+            demo_log_div.innerHTML += "<br>field_validation_failed:"+input.getAttribute("data-type");
           });
         </script>
       </div>
