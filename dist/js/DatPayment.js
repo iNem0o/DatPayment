@@ -2568,8 +2568,8 @@ var DatPayment = function () {
 
                 case 'expiry_month':
                 case 'expiry_year':
-                    var expiry = this.input_expiry.value.split(' / ');
-                    return expiry[field_name == "expiry_month" ? 0 : 1] || '';
+                    var expiry = this.input_expiry.value.split('/');
+                    return expiry[field_name == "expiry_month" ? 0 : 1].trim() || '';
                     break;
             }
         }
